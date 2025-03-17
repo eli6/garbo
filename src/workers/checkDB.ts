@@ -76,6 +76,7 @@ const checkDB = new DiscordWorker('checkDB', async (job: CheckDBJob) => {
     baseYear,
     goals,
     initiatives,
+    equalityReport,
   } = childrenValues
 
   const base = {
@@ -153,6 +154,16 @@ const checkDB = new DiscordWorker('checkDB', async (job: CheckDBJob) => {
             data: {
               ...base.data,
               initiatives,
+            },
+          }
+        : null,
+      equalityReport
+        ? {
+            ...base,
+            queueName: 'diffEquality',
+            data: {
+              ...base.data,
+              equalityReport,
             },
           }
         : null,

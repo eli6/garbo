@@ -86,6 +86,14 @@ const extractEmissions = new DiscordWorker<ExtractEmissionsJob>(
         },
         {
           ...base,
+          name: 'equalityReport ' + companyName,
+          data: {
+            ...base.data,
+            type: JobType.Equality,
+          },
+        },
+        {
+          ...base,
           name: 'initiatives ' + companyName,
           data: {
             ...base.data,
