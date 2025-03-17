@@ -3,7 +3,7 @@ import { diffChanges , defaultMetadata} from '../lib/saveUtils'
 
 class DiffEqualityJob extends DiscordJob {
   declare data: DiscordJob['data'] & {
-    existingCompany: any
+    existingCompany?: any
     equalityReport: {
       title: string
       description?: string
@@ -17,8 +17,6 @@ const diffEquality = new DiscordWorker<DiffEqualityJob>(
   async (job) => {
     const { equalityReport, existingCompany, url } = job.data
     const metadata = defaultMetadata(url)
-
-    console.log('equalityReport', equalityReport)
 
     const body = {
       equalityReport,
